@@ -14,12 +14,13 @@ class MainViewController: UIViewController {
     var coordinator: MainCoordinatorProtocol?
     var viewModel: MainViewModelProtocol?
     
+    @IBOutlet private weak var tableView: UITableView!
+    
     private let bag = DisposeBag()
     private var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
         setup()
     }
 }
@@ -27,7 +28,13 @@ class MainViewController: UIViewController {
 //MARK: - Setup
 private extension MainViewController {
     func setup() {
+        navigationController?.navigationBar.isHidden = true
         setupLocationManager()
+        setupTableView()
+    }
+    
+    func setupTableView() {
+        tableView.tableHeaderView = HeaderView()
     }
 }
 
@@ -46,9 +53,8 @@ extension MainViewController: CLLocationManagerDelegate {
             return
         }
     
-        print(location)
+        viewModel?.setLocation(location: location)
         locationManager.stopUpdatingLocation()
-        //viewModel.setLocation(location: location)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

@@ -7,11 +7,18 @@
 
 import Foundation
 import RxSwift
+import MapKit
 
 protocol MainViewModelProtocol {
+    func setLocation(location: CLLocation)
+}
+
+class MainViewModel {
     
 }
 
-class MainViewModel: MainViewModelProtocol {
-    
+extension MainViewModel: MainViewModelProtocol {
+    func setLocation(location: CLLocation) {
+        
+    }
 }
