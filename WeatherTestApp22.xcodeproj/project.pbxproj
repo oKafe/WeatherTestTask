@@ -447,6 +447,8 @@
 				DEVELOPMENT_TEAM = 27G7PRP6RR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherTestApp22/Info.plist;
+				INFOPLIST_KEY_NSLocationUsageDescription = "We want to use your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We want to use your location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -476,6 +478,8 @@
 				DEVELOPMENT_TEAM = 27G7PRP6RR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherTestApp22/Info.plist;
+				INFOPLIST_KEY_NSLocationUsageDescription = "We want to use your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We want to use your location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
