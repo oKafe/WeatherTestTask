@@ -59,15 +59,18 @@
                     <buttonConfiguration key="configuration" style="plain" image="ic_my_location">
                         <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="openMapAction:" destination="-1" eventType="touchUpInside" id="hHL-0c-3YU"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nha-Rb-AXq">
-                    <rect key="frame" x="16.000000000000004" y="117" width="41.333333333333343" height="20.333333333333343"/>
+                    <rect key="frame" x="16.000000000000004" y="117" width="41.333333333333343" height="405"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nd8-3g-jc5">
-                    <rect key="frame" x="66.333333333333343" y="153.33333333333334" width="257.33333333333326" height="128.00000000000003"/>
+                    <rect key="frame" x="66.333333333333343" y="538" width="257.33333333333326" height="128"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_white_day_shower" translatesAutoresizingMaskIntoConstraints="NO" id="2zY-7p-YiG">
                             <rect key="frame" x="0.0" y="0.0" width="160" height="128"/>
@@ -162,8 +165,14 @@
                         <constraint firstAttribute="trailing" secondItem="mVX-XP-QBL" secondAttribute="trailing" id="tSc-wG-TjH"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no hourly forecast data for this day" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QF-9n-gwY">
+                    <rect key="frame" x="16" y="682" width="358" height="128"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="pMm-Y6-Bf3">
-                    <rect key="frame" x="0.0" y="297.33333333333331" width="390" height="128"/>
+                    <rect key="frame" x="0.0" y="682" width="390" height="128"/>
                     <color key="backgroundColor" name="SecondBlue"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="128" id="7Pd-YD-vc8"/>
@@ -180,15 +189,20 @@
             <color key="backgroundColor" name="MainBlue"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="pMm-Y6-Bf3" secondAttribute="trailing" id="2cJ-6w-3Jf"/>
+                <constraint firstItem="0QF-9n-gwY" firstAttribute="top" secondItem="pMm-Y6-Bf3" secondAttribute="top" id="G5P-OQ-wQt"/>
                 <constraint firstItem="gtW-g0-zAv" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="32" id="JoA-MK-g2a"/>
                 <constraint firstItem="nha-Rb-AXq" firstAttribute="top" secondItem="gtW-g0-zAv" secondAttribute="bottom" constant="8" id="LPJ-hu-6hm"/>
                 <constraint firstItem="gtW-g0-zAv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="UAK-hZ-Bk7"/>
                 <constraint firstItem="nha-Rb-AXq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="UgI-hR-OAv"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Sy8-0m-ZOA" secondAttribute="trailing" constant="16" id="dlh-fQ-E0i"/>
                 <constraint firstItem="pMm-Y6-Bf3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="eUQ-DK-a81"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="pMm-Y6-Bf3" secondAttribute="bottom" id="fLA-9b-4wT"/>
+                <constraint firstItem="0QF-9n-gwY" firstAttribute="trailing" secondItem="pMm-Y6-Bf3" secondAttribute="trailing" constant="-16" id="gMh-Nk-9CF"/>
                 <constraint firstItem="Sy8-0m-ZOA" firstAttribute="centerY" secondItem="4xh-Jd-iv9" secondAttribute="centerY" id="gxK-wN-sDr"/>
                 <constraint firstItem="Nd8-3g-jc5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hYH-1g-EFL"/>
+                <constraint firstItem="0QF-9n-gwY" firstAttribute="leading" secondItem="pMm-Y6-Bf3" secondAttribute="leading" constant="16" id="lrK-Uz-mBs"/>
                 <constraint firstItem="Nd8-3g-jc5" firstAttribute="top" secondItem="nha-Rb-AXq" secondAttribute="bottom" constant="16" id="soe-BK-hsL"/>
+                <constraint firstItem="0QF-9n-gwY" firstAttribute="bottom" secondItem="pMm-Y6-Bf3" secondAttribute="bottom" id="zas-po-ebl"/>
                 <constraint firstItem="pMm-Y6-Bf3" firstAttribute="top" secondItem="Nd8-3g-jc5" secondAttribute="bottom" constant="16" id="zcg-Oq-p2U"/>
             </constraints>
             <point key="canvasLocation" x="-18.46153846153846" y="20.616113744075829"/>

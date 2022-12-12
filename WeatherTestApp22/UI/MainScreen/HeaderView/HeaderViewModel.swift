@@ -33,10 +33,6 @@ class HeaderViewModel {
     private let _windSpeedString = PublishSubject<String>()
     private let _windDirectionIconString = PublishSubject<String>()
     private let _hourlyForecast = PublishSubject<[Hourly]>()
-    
-    deinit {
-        print("LOLLLL")
-    }
 }
 
 //MARK: - Protocol methods

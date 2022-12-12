@@ -9,15 +9,18 @@ import Foundation
 import UIKit
 import Moya
 import RxSwift
+import CoreLocation
 
 protocol MainCoordinatorProtocol {
-    
+    func openMapView(location: CLLocation) -> Observable<CLLocation>
 }
 
-class MainCoordinator: BaseCoordinator<Void>, MainCoordinatorProtocol {
+class MainCoordinator: BaseCoordinator<Void> {
     
     private let window: UIWindow
     private var navigationController: UINavigationController!
+    
+    private let bag = DisposeBag()
 
     init(window: UIWindow) {
         self.window = window
@@ -38,5 +41,13 @@ class MainCoordinator: BaseCoordinator<Void>, MainCoordinatorProtocol {
         window.makeKeyAndVisible()
 
         return Observable.never()
+    }
+}
+
+extension MainCoordinator: MainCoordinatorProtocol {
+    func openMapView(location: CLLocation) -> Observable<CLLocation> {
+        let coordinator = MapViewCoordinator(navigationController: navigationController, location: location)
+        
+        return coordinate(to: coordinator)
     }
 }

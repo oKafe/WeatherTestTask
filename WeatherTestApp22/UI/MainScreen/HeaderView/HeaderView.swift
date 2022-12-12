@@ -24,6 +24,8 @@ class HeaderView: UIView {
     @IBOutlet private weak var hourForecastCollectionView: UICollectionView!
     @IBOutlet private weak var cityLabel: UILabel!
     
+    var openMapHandler: (() -> Void)?
+    
     private let bag = DisposeBag()
     
     init() {
@@ -32,10 +34,6 @@ class HeaderView: UIView {
         super.init(frame: frame)
         
         initXib()
-    }
-    
-    deinit {
-        print("LOLLL")
     }
     
     required init?(coder: NSCoder) {
@@ -58,6 +56,11 @@ class HeaderView: UIView {
     
     func configureWith(model: SelectedDayWeather) {
         viewModel?.selectedDayWeatherChanged(model)
+        hourForecastCollectionView.isHidden = model.hourlyForecast.count <= 0
+    }
+    
+    @IBAction func openMapAction(_ sender: Any) {
+        openMapHandler?()
     }
 }
 

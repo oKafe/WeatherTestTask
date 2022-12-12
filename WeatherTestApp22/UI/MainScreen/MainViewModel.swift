@@ -11,17 +11,23 @@ import MapKit
 import Moya
 import Mapper
 import Moya_ModelMapper
+import RxRelay
 
 protocol MainViewModelProtocol {
     var selectedDayWeather: Observable<SelectedDayWeather> { get }
     var dailyForecast: Observable<[Daily]> { get }
+
+    var location: CLLocation? { get }
     
     func setLocation(location: CLLocation)
+    func selectDay(_ day: Daily)
+    func isDaySelected(_ day: Daily) -> Bool
 }
 
 class MainViewModel {
     
-    private var _selectedDayWeather = PublishSubject<SelectedDayWeather>()
+    private var forecast: Forecast?
+    private var _selectedDayWeather = BehaviorRelay<SelectedDayWeather>(value: SelectedDayWeather())
     private var _dailyForecast = PublishSubject<[Daily]>()
     
     private var currentLocation: Coordinates?
@@ -36,8 +42,13 @@ class MainViewModel {
 
 //MARK: - Protocol methods
 extension MainViewModel: MainViewModelProtocol {
+    
+    var location: CLLocation? {
+        currentLocation?.clLocation
+    }
+    
     var selectedDayWeather: RxSwift.Observable<SelectedDayWeather> {
-        _selectedDayWeather
+        _selectedDayWeather.asObservable()
     }
     
     var dailyForecast: RxSwift.Observable<[Daily]> {
@@ -46,6 +57,22 @@ extension MainViewModel: MainViewModelProtocol {
     
     func setLocation(location: CLLocation) {
         setCurrentLocation(location)
+    }
+    
+    func selectDay(_ day: Daily) {
+        let hourlyForecast = (forecast?.hourly ?? []).filter({
+            ($0.dt ?? 0) >= (day.dt ?? 0) &&
+            ($0.dt ?? 0) <= (day.dt ?? 0) + 86400 /// 86400 - seconds in day
+        })
+        
+        let selectedDayWeather = SelectedDayWeather(cityName: currentLocation?.cityName,
+                                                    daily: day,
+                                                    hourlyForecast: hourlyForecast)
+        _selectedDayWeather.accept(selectedDayWeather)
+    }
+    
+    func isDaySelected(_ day: Daily) -> Bool {
+        return _selectedDayWeather.value.daily?.dt == day.dt
     }
 }
 
@@ -80,6 +107,7 @@ private extension MainViewModel {
                 
                 self?.selectFirstDayFrom(forecast: forecast)
                 self?._dailyForecast.onNext(forecast.daily ?? [])
+                self?.forecast = forecast
                 
             } onError: { error in
                 print("GET WEATHER ERROR:")
@@ -92,6 +120,6 @@ private extension MainViewModel {
         let selectedDayWeather = SelectedDayWeather(cityName: currentLocation?.cityName,
                                                     daily: forecast.daily?.first,
                                                     hourlyForecast: forecast.hourly ?? [])
-        _selectedDayWeather.onNext(selectedDayWeather)
+        _selectedDayWeather.accept(selectedDayWeather)
     }
 }

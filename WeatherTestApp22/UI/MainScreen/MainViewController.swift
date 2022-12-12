@@ -38,14 +38,41 @@ private extension MainViewController {
     }
     
     func setupTableView() {
+        let nib = UINib(nibName: "DayForecastTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "DayForecastTableViewCell")
         tableView.tableHeaderView = headerView
+        tableView.separatorStyle = .none
+        tableView.estimatedRowHeight = 80
+        tableView.rowHeight = 80
+        
+        headerView.openMapHandler = { [weak self] in
+            self?.openMapAction()
+        }
     }
     
     func bindViewModel() {
-        viewModel?.selectedDayWeather
+        viewModel?
+            .selectedDayWeather
             .bind(onNext: { [weak self] selectedDayWeather in
                 self?.headerView.configureWith(model: selectedDayWeather)
             })
+            .disposed(by: bag)
+        
+        viewModel?
+            .dailyForecast
+            .bind(to: tableView.rx.items(cellIdentifier: "DayForecastTableViewCell", cellType: DayForecastTableViewCell.self)) { [weak self] (row, day, cell) in
+                
+                let selected = self?.viewModel?.isDaySelected(day) ?? false
+                cell.configureWith(dayWeather: day, selected: selected)
+            }
+            .disposed(by: bag)
+        
+        tableView.rx
+            .modelSelected(Daily.self)
+            .bind { [weak self] day in
+                self?.viewModel?.selectDay(day)
+                self?.tableView.reloadData()
+            }
             .disposed(by: bag)
     }
 }
@@ -103,5 +130,18 @@ extension MainViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
       locationManager.stopUpdatingLocation()
       print("Error: \(error)")
+    }
+}
+
+
+private extension MainViewController {
+    func openMapAction() {
+        guard let location = viewModel?.location else { return }
+        coordinator?
+            .openMapView(location: location)
+            .bind(onNext: { [weak self] location in
+                self?.viewModel?.setLocation(location: location)
+            })
+            .disposed(by: bag)
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import Moya
 import Mapper
+import CoreLocation
 
 enum WeatherEndpoints {
     case weatherForecast(coordinates: Coordinates)
@@ -58,6 +59,10 @@ struct Coordinates {
     let lon: Double
     let lat: Double
     var cityName: String?
+    
+    var clLocation: CLLocation {
+        return CLLocation(latitude: lat, longitude: lon)
+    }
 }
 
 enum Exclude: String {
