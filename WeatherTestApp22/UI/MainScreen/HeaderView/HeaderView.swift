@@ -24,7 +24,10 @@ class HeaderView: UIView {
     @IBOutlet private weak var hourForecastCollectionView: UICollectionView!
     @IBOutlet private weak var cityLabel: UILabel!
     
+    private let tapOnLocationGestureRecognizer = UITapGestureRecognizer()
+    
     var openMapHandler: (() -> Void)?
+    var openSearchHandler: (() -> Void)?
     
     private let bag = DisposeBag()
     
@@ -59,8 +62,13 @@ class HeaderView: UIView {
         hourForecastCollectionView.isHidden = model.hourlyForecast.count <= 0
     }
     
-    @IBAction func openMapAction(_ sender: Any) {
+    //MARK: - Actions
+    @IBAction private func openMapAction(_ sender: Any) {
         openMapHandler?()
+    }
+    
+    @objc private func openSearchAction() {
+        openSearchHandler?()
     }
 }
 
@@ -68,8 +76,14 @@ class HeaderView: UIView {
 //MARK: - Setup
 private extension HeaderView {
     func setup() {
+        setupTapGestureRecognizer()
         setupCollectionView()
         bindViewModel()
+    }
+    
+    func setupTapGestureRecognizer() {
+        tapOnLocationGestureRecognizer.addTarget(self, action: #selector(openSearchAction))
+        locationStackView.addGestureRecognizer(tapOnLocationGestureRecognizer)
     }
     
     func setupCollectionView() {

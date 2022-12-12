@@ -13,6 +13,7 @@ import CoreLocation
 
 protocol MainCoordinatorProtocol {
     func openMapView(location: CLLocation) -> Observable<CLLocation>
+    func openSearchView() -> Observable<CLLocation>
 }
 
 class MainCoordinator: BaseCoordinator<Void> {
@@ -47,6 +48,12 @@ class MainCoordinator: BaseCoordinator<Void> {
 extension MainCoordinator: MainCoordinatorProtocol {
     func openMapView(location: CLLocation) -> Observable<CLLocation> {
         let coordinator = MapViewCoordinator(navigationController: navigationController, location: location)
+        
+        return coordinate(to: coordinator)
+    }
+    
+    func openSearchView() -> Observable<CLLocation> {
+        let coordinator = SearchCoordinator(navigationController: navigationController)
         
         return coordinate(to: coordinator)
     }

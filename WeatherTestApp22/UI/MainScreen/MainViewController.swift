@@ -33,6 +33,7 @@ private extension MainViewController {
         
         setupLocationManager()
         setupTableView()
+        setupHeaderView()
         
         bindViewModel()
     }
@@ -44,9 +45,15 @@ private extension MainViewController {
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = 80
-        
+    }
+    
+    func setupHeaderView() {
         headerView.openMapHandler = { [weak self] in
             self?.openMapAction()
+        }
+        
+        headerView.openSearchHandler = { [weak self] in
+            self?.openSearchAction()
         }
     }
     
@@ -133,12 +140,21 @@ extension MainViewController: CLLocationManagerDelegate {
     }
 }
 
-
+//MARK: - Open VCs to select locations from map and search
 private extension MainViewController {
     func openMapAction() {
         guard let location = viewModel?.location else { return }
         coordinator?
             .openMapView(location: location)
+            .bind(onNext: { [weak self] location in
+                self?.viewModel?.setLocation(location: location)
+            })
+            .disposed(by: bag)
+    }
+    
+    func openSearchAction() {
+        coordinator?
+            .openSearchView()
             .bind(onNext: { [weak self] location in
                 self?.viewModel?.setLocation(location: location)
             })
