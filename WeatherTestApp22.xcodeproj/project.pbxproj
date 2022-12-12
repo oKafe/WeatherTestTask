@@ -23,6 +23,10 @@
 		8B0C23F52947D3450015B9F4 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0C23F42947D3450015B9F4 /* SearchCoordinator.swift */; };
 		8B0C23FB2947E52C0015B9F4 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0C23F92947E52C0015B9F4 /* CityTableViewCell.swift */; };
 		8B0C23FC2947E52C0015B9F4 /* CityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B0C23FA2947E52C0015B9F4 /* CityTableViewCell.xib */; };
+		8B0C23FE2947E8730015B9F4 /* UILayoutGuide+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0C23FD2947E8730015B9F4 /* UILayoutGuide+Ext.swift */; };
+		8B0C24002947E89C0015B9F4 /* Notifications+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0C23FF2947E89C0015B9F4 /* Notifications+Ext.swift */; };
+		8B0C24022947E9660015B9F4 /* KeyboardLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0C24012947E9660015B9F4 /* KeyboardLayoutGuide.swift */; };
+		8B0C24042947E9AC0015B9F4 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0C24032947E9AC0015B9F4 /* UIView+Ext.swift */; };
 		8B64C66B29465F4300652D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B64C66A29465F4300652D80 /* AppDelegate.swift */; };
 		8B64C66D29465F4300652D80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B64C66C29465F4300652D80 /* SceneDelegate.swift */; };
 		8B64C67429465F4500652D80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B64C67329465F4500652D80 /* Assets.xcassets */; };
@@ -63,6 +67,10 @@
 		8B0C23F42947D3450015B9F4 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		8B0C23F92947E52C0015B9F4 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		8B0C23FA2947E52C0015B9F4 /* CityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityTableViewCell.xib; sourceTree = "<group>"; };
+		8B0C23FD2947E8730015B9F4 /* UILayoutGuide+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILayoutGuide+Ext.swift"; sourceTree = "<group>"; };
+		8B0C23FF2947E89C0015B9F4 /* Notifications+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notifications+Ext.swift"; sourceTree = "<group>"; };
+		8B0C24012947E9660015B9F4 /* KeyboardLayoutGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutGuide.swift; sourceTree = "<group>"; };
+		8B0C24032947E9AC0015B9F4 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		8B64C66729465F4300652D80 /* WeatherTestApp22.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherTestApp22.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B64C66A29465F4300652D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B64C66C29465F4300652D80 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,10 +137,14 @@
 		8B0C23E1294741540015B9F4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8B0C24012947E9660015B9F4 /* KeyboardLayoutGuide.swift */,
 				8B0C23E22947416D0015B9F4 /* Observable+Ext.swift */,
 				8B0C23E629474DB90015B9F4 /* UIImageView+Ext.swift */,
 				8B0C23E829474F5A0015B9F4 /* String+Ext.swift */,
 				8B0C23EA294770EA0015B9F4 /* Double+Ext.swift */,
+				8B0C23FD2947E8730015B9F4 /* UILayoutGuide+Ext.swift */,
+				8B0C23FF2947E89C0015B9F4 /* Notifications+Ext.swift */,
+				8B0C24032947E9AC0015B9F4 /* UIView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -398,6 +410,7 @@
 			files = (
 				8B0C23E32947416D0015B9F4 /* Observable+Ext.swift in Sources */,
 				8B64C69B29466EC400652D80 /* SearchViewController.swift in Sources */,
+				8B0C23FE2947E8730015B9F4 /* UILayoutGuide+Ext.swift in Sources */,
 				8B0C23FB2947E52C0015B9F4 /* CityTableViewCell.swift in Sources */,
 				8B64C66B29465F4300652D80 /* AppDelegate.swift in Sources */,
 				8B0C23DE2946A67F0015B9F4 /* Forecast.swift in Sources */,
@@ -408,9 +421,12 @@
 				8B64C6A02946702B00652D80 /* MainViewModel.swift in Sources */,
 				8B64C6B02946814300652D80 /* DayForecastTableViewCell.swift in Sources */,
 				8B64C6A6294680D000652D80 /* HeaderView.swift in Sources */,
+				8B0C24022947E9660015B9F4 /* KeyboardLayoutGuide.swift in Sources */,
 				8B64C69729466EAC00652D80 /* MapViewController.swift in Sources */,
+				8B0C24042947E9AC0015B9F4 /* UIView+Ext.swift in Sources */,
 				8B0C23F12947B5710015B9F4 /* MapViewModel.swift in Sources */,
 				8B64C6AA2946811000652D80 /* HourForecastCollectionViewCell.swift in Sources */,
+				8B0C24002947E89C0015B9F4 /* Notifications+Ext.swift in Sources */,
 				8B0C23E729474DB90015B9F4 /* UIImageView+Ext.swift in Sources */,
 				8B0C23F32947BE330015B9F4 /* SearchViewModel.swift in Sources */,
 				8B0C23E929474F5A0015B9F4 /* String+Ext.swift in Sources */,

@@ -56,6 +56,17 @@ private extension SearchViewController {
     }
     
     func setupTableView() {
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: tableView!,
+                           attribute: .bottom,
+                           relatedBy: .equal,
+                           toItem: view.keyboardLayoutGuide,
+                           attribute: .top,
+                           multiplier: 1.0,
+                           constant: 0).isActive = true
+//        tableView.addConstraint(bottomConstraint)
+        
         let nib = UINib(nibName: "CityTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "CityTableViewCell")
         tableView.separatorStyle = .none
