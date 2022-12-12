@@ -46,6 +46,7 @@ class MainCoordinator: BaseCoordinator<Void> {
     }
 }
 
+//MARK: - MainCoordinatorProtocol
 extension MainCoordinator: MainCoordinatorProtocol {
     func openMapView(location: CLLocation) -> Observable<CLLocation> {
         let coordinator = MapViewCoordinator(navigationController: navigationController, location: location)
@@ -60,6 +61,7 @@ extension MainCoordinator: MainCoordinatorProtocol {
     }
 }
 
+//MARK: - Private
 private extension MainCoordinator {
     func setupNavBarAppearance() {
         let appearance = UINavigationBarAppearance()

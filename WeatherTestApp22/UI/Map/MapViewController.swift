@@ -30,7 +30,7 @@ class MapViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
-    //MARK: - Action
+    //MARK: - Actions
     @IBAction func tapOnMapAction(_ sender: UITapGestureRecognizer) {
         if sender.state == .ended {
             let point = sender.location(in: mapView)

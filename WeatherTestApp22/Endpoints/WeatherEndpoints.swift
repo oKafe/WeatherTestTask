@@ -55,16 +55,6 @@ extension WeatherEndpoints: TargetType {
     }
 }
 
-struct Coordinates {
-    let lon: Double
-    let lat: Double
-    var cityName: String?
-    
-    var clLocation: CLLocation {
-        return CLLocation(latitude: lat, longitude: lon)
-    }
-}
-
 enum Exclude: String {
     typealias RawValue = String
     

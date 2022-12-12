@@ -25,7 +25,6 @@ protocol MainViewModelProtocol {
 }
 
 class MainViewModel {
-    
     private var forecast: Forecast?
     private var _selectedDayWeather = BehaviorRelay<SelectedDayWeather>(value: SelectedDayWeather())
     private var _dailyForecast = PublishSubject<[Daily]>()
