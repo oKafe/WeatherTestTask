@@ -15,7 +15,7 @@ class SearchViewController: UIViewController {
     var coordinator: SearchCoordinatorProtocol?
     
     @IBOutlet private weak var tableView: UITableView!
-    private lazy var searchBar = UISearchBar(frame: CGRectMake(0, 0, 200, 20))
+    private var searchBar = UISearchBar(frame: CGRectMake(0, 0, 200, 20))
     
     private var bag = DisposeBag()
     private let tapGestureRecognizer = UITapGestureRecognizer()
@@ -53,6 +53,8 @@ private extension SearchViewController {
     
     func setupSearchBar() {
         navigationItem.titleView = searchBar
+        searchBar.searchTextField.backgroundColor = .white
+        searchBar.placeholder = "Search Cities"
     }
     
     func setupTableView() {

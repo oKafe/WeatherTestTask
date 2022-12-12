@@ -37,6 +37,7 @@ class MainCoordinator: BaseCoordinator<Void> {
         
         
         navigationController = UINavigationController(rootViewController: mainViewController)
+        setupNavBarAppearance()
         
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
@@ -56,5 +57,20 @@ extension MainCoordinator: MainCoordinatorProtocol {
         let coordinator = SearchCoordinator(navigationController: navigationController)
         
         return coordinate(to: coordinator)
+    }
+}
+
+private extension MainCoordinator {
+    func setupNavBarAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(named: "MainBlue")
+        appearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20),
+                                          NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController.navigationBar.tintColor = .white
     }
 }
