@@ -33,7 +33,7 @@ struct Daily: Mappable, Codable {
     let temp: Temp?
     let humidity: Int?
     let windSpeed: Double?
-    let windDeg: Int?
+    let windDeg: Double?
     let weather: [Weather]?
 
     init(map: Mapper) throws {

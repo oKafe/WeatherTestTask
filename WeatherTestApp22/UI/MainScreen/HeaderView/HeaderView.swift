@@ -106,6 +106,12 @@ private extension HeaderView {
         viewModel?.humidityString.bind(to: humidityLabel.rx.text).disposed(by: bag)
         viewModel?.windSpeedString.bind(to: windSpeedLabel.rx.text).disposed(by: bag)
         
+        viewModel?.windDirectionIconString
+            .bind(onNext: { [weak self] iconName in
+                self?.windDirectionImageView.image = UIImage(named: iconName)
+            })
+            .disposed(by: bag)
+        
         viewModel?.weatherIconString
             .bind(onNext: { [weak self] urlString in
                 self?.weatherIconImageView.downloaded(from: urlString)

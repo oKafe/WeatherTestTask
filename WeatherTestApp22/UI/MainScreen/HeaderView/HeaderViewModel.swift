@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import CoreLocation
 
 protocol HeaderViewModelProtocol {
     var locationString: Observable<String> { get }
@@ -78,6 +79,7 @@ extension HeaderViewModel: HeaderViewModelProtocol {
         setTemperature(from: selectedDayWeather.daily)
         setWeatherIcon(from: selectedDayWeather.daily?.weather?.first)
         setDayStringFrom(timestamp: selectedDayWeather.daily?.dt)
+        setWindDirectionIcon(for: selectedDayWeather.daily?.windDeg ?? 0)
     }
 }
 
@@ -108,5 +110,46 @@ private extension HeaderViewModel {
         let resultString = "\(weekDayString), \(dateString)"
         
         _dayString.onNext(resultString)
+    }
+    
+    func setWindDirectionIcon(for angle: Double) {
+        guard angle >= 0 else { return }
+        
+        let directions: [WindDirection] = [.north, .northEast, .east, .southEast, .south, .southWest, .west, .northWest]
+        let index = Int((angle + 22.5) / 45.0) & 7
+        
+        _windDirectionIconString.onNext(directions[index].imageName)
+    }
+}
+
+enum WindDirection {
+    case north
+    case northEast
+    case east
+    case southEast
+    case south
+    case southWest
+    case west
+    case northWest
+    
+    var imageName: String {
+        switch self {
+        case .north:
+            return "icon_wind_n"
+        case .northEast:
+            return "icon_wind_ne"
+        case .east:
+            return "icon_wind_e"
+        case .southEast:
+            return "icon_wind_se"
+        case .south:
+            return "icon_wind_s"
+        case .southWest:
+            return "icon_wind_ws"
+        case .west:
+            return "icon_wind_w"
+        case .northWest:
+            return "icon_wind_wn"
+        }
     }
 }
