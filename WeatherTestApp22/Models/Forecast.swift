@@ -9,7 +9,7 @@ import Foundation
 import Mapper
 
 // MARK: - Forecast
-struct Forecast: Mappable {
+struct Forecast: Mappable, Codable {
     let lat: Double?
     let lon: Double?
     let timezone: String?
@@ -28,8 +28,8 @@ struct Forecast: Mappable {
 }
 
 // MARK: - Daily
-struct Daily: Mappable {
-    let dt: Int?
+struct Daily: Mappable, Codable {
+    let dt: Double?
     let temp: Temp?
     let humidity: Int?
     let windSpeed: Double?
@@ -47,7 +47,7 @@ struct Daily: Mappable {
 }
 
 // MARK: - Temp
-struct Temp: Mappable {
+struct Temp: Mappable, Codable {
     let min: Double?
     let max: Double?
 
@@ -58,7 +58,7 @@ struct Temp: Mappable {
 }
 
 // MARK: - Weather
-struct Weather: Mappable {
+struct Weather: Mappable, Codable {
     let id: Int?
     let main: String?
     let weatherDescription: String?
@@ -74,8 +74,8 @@ struct Weather: Mappable {
 }
 
 // MARK: - Hourly
-struct Hourly: Mappable {
-    let dt: Int?
+struct Hourly: Mappable, Codable {
+    let dt: Double?
     let temp: Double?
     let humidity: Int?
     let windSpeed: Double?

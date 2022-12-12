@@ -23,4 +23,40 @@ class DayForecastTableViewCell: UITableViewCell {
         
     }
     
+    func configureWith(dayWeather: Daily, selected: Bool) {
+        setDayWeek(from: dayWeather.dt)
+        setWeatherIcon(from: dayWeather.weather?.first)
+        setTemperature(from: dayWeather)
+    }
+    
+}
+
+private extension DayForecastTableViewCell {
+    func switchSelected(selected: Bool) {
+        let color = selected ? UIColor(named: "MainBlue") : .black
+        dayLabel.textColor = color
+        dayLabel.textColor = color
+    }
+    
+    func setDayWeek(from timestamp: Double?) {
+        guard let timestamp = timestamp else { return }
+        
+        dayLabel.text = timestamp.dateStringFromTimeStamp(format: "EE").capitalized
+    }
+    
+    func setWeatherIcon(from weather: Weather?) {
+        weatherIconImageView.image = nil
+        guard let urlString = weather?.icon?.iconLinkFromName else { return }
+        
+        weatherIconImageView.downloaded(from: urlString)
+    }
+    
+    func setTemperature(from dayWeather: Daily?) {
+        guard let dayWeather = dayWeather else { return }
+        
+        let integerMinTemp = Int(dayWeather.temp?.min ?? 0)
+        let integerMaxTemp = Int(dayWeather.temp?.max ?? 0)
+        
+        temperatureLabel.text = "\(integerMaxTemp)°/\(integerMinTemp)°"
+    }
 }

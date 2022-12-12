@@ -7,21 +7,7 @@
 
 import Foundation
 import Moya
-
-struct Coordinates: Mappable {
-    let lon: Double
-    let lat: Double
-}
-
-enum Exclude: String {
-    typealias RawValue = String
-    
-    case Current = "current"
-    case Minutely = "minutely"
-    case Hourly = "hourly"
-    case Daily = "daily"
-    case Alerts = "alerts"
-}
+import Mapper
 
 enum WeatherEndpoints {
     case weatherForecast(coordinates: Coordinates)
@@ -30,7 +16,7 @@ enum WeatherEndpoints {
 extension WeatherEndpoints: TargetType {
     
     var baseURL: URL {
-        return URL(string: "http://api.openweathermap.org/data/3.0")!
+        return URL(string: "http://api.openweathermap.org/data/2.5")!
     }
     
     var path: String {
@@ -56,7 +42,8 @@ extension WeatherEndpoints: TargetType {
                 parameters: [
                     "lat": coordinates.lat,
                     "lon": coordinates.lon,
-                    "exclude": "hourly, daily",
+                    "exclude": "minutely",
+                    "units": "metric",
                     "appid": "fa7164787f5997600c2b11d5265905a1"],
                 encoding: URLEncoding.default)
         }
@@ -65,4 +52,20 @@ extension WeatherEndpoints: TargetType {
     var headers: [String : String]? {
         return nil
     }
+}
+
+struct Coordinates {
+    let lon: Double
+    let lat: Double
+    var cityName: String?
+}
+
+enum Exclude: String {
+    typealias RawValue = String
+    
+    case Current = "current"
+    case Minutely = "minutely"
+    case Hourly = "hourly"
+    case Daily = "daily"
+    case Alerts = "alerts"
 }

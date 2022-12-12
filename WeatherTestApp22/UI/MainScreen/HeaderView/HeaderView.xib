@@ -162,7 +162,7 @@
                         <constraint firstAttribute="trailing" secondItem="mVX-XP-QBL" secondAttribute="trailing" id="tSc-wG-TjH"/>
                     </constraints>
                 </view>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="pMm-Y6-Bf3">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="pMm-Y6-Bf3">
                     <rect key="frame" x="0.0" y="297.33333333333331" width="390" height="128"/>
                     <color key="backgroundColor" name="SecondBlue"/>
                     <constraints>

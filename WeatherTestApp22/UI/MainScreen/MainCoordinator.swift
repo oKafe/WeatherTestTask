@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Moya
 import RxSwift
 
 protocol MainCoordinatorProtocol {
@@ -23,7 +24,8 @@ class MainCoordinator: BaseCoordinator<Void>, MainCoordinatorProtocol {
     }
     
     override func start() -> Observable<Void> {
-        let mainViewModel = MainViewModel()
+        let mainScreenProvider = MoyaProvider<WeatherEndpoints>()
+        let mainViewModel = MainViewModel(provider: mainScreenProvider)
         
         let mainViewController = MainViewController()
         mainViewController.coordinator = self

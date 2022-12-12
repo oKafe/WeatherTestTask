@@ -13,8 +13,9 @@ class MainViewController: UIViewController {
 
     var coordinator: MainCoordinatorProtocol?
     var viewModel: MainViewModelProtocol?
-    
+        
     @IBOutlet private weak var tableView: UITableView!
+    private let headerView = HeaderView()
     
     private let bag = DisposeBag()
     private var locationManager: CLLocationManager!
@@ -29,12 +30,23 @@ class MainViewController: UIViewController {
 private extension MainViewController {
     func setup() {
         navigationController?.navigationBar.isHidden = true
+        
         setupLocationManager()
         setupTableView()
+        
+        bindViewModel()
     }
     
     func setupTableView() {
-        tableView.tableHeaderView = HeaderView()
+        tableView.tableHeaderView = headerView
+    }
+    
+    func bindViewModel() {
+        viewModel?.selectedDayWeather
+            .bind(onNext: { [weak self] selectedDayWeather in
+                self?.headerView.configureWith(model: selectedDayWeather)
+            })
+            .disposed(by: bag)
     }
 }
 
