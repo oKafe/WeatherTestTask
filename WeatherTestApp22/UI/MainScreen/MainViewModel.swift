@@ -60,8 +60,7 @@ extension MainViewModel: MainViewModelProtocol {
     
     func selectDay(_ day: Daily) {
         let hourlyForecast = (forecast?.hourly ?? []).filter({
-            ($0.dt ?? 0) >= (day.dt ?? 0) &&
-            ($0.dt ?? 0) <= (day.dt ?? 0) + 86400 /// 86400 - seconds in day
+            ($0.dt ?? 0) >= (day.dt ?? 0) - 43200 /// because dt in daily represents 12:00
         })
         
         let selectedDayWeather = SelectedDayWeather(cityName: currentLocation?.cityName,
