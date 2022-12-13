@@ -45,6 +45,7 @@ private extension MainViewController {
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = 80
+        tableView.isHidden = true
     }
     
     func setupHeaderView() {
@@ -61,7 +62,9 @@ private extension MainViewController {
         viewModel?
             .selectedDayWeather
             .bind(onNext: { [weak self] selectedDayWeather in
+                
                 self?.headerView.configureWith(model: selectedDayWeather)
+                self?.tableView.isHidden = false
             })
             .disposed(by: bag)
         
@@ -77,6 +80,7 @@ private extension MainViewController {
         tableView.rx
             .modelSelected(Daily.self)
             .bind { [weak self] day in
+                
                 self?.viewModel?.selectDay(day)
                 self?.tableView.reloadData()
             }
